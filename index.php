@@ -1,5 +1,4 @@
 <?php
-
 require 'config.php';
 require 'functions.php';
 require 'sql.php';
@@ -14,14 +13,29 @@ try {
     $sql = new PDO($dbdsn, $mysqlUsername, $mysqlPassword, array(PDO::ATTR_PERSISTENT => true,
                                                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 } catch(PDOException $e) {
-    die($e->getMessage());
+    echo "Could not connect to the database. Check your config.php file.";
 }
-
+try{
 $sql->query($create_tables);
+
 $sql->query($insert_settings);
+}
+catch(Exception $ex){
+
+  echo $ex->getMessage();
+}
+if(isset($_POST["new_password"])){
+  if($_POST["new_password"]==$_POST["password_confirmation"]){
+    $q = $sql->prepare($change_password);
+    $q->execute(array($_POST["new_password"],"1"));
+    $q->closeCursor();
+  }
+}
 
 //general settings
 $queryGeneralSettings = "select * from settings";
+$resultSettings = $sql->query($queryGeneralSettings);
+
 $resultSettings = $sql->query($queryGeneralSettings);
 
 if ($resultSettings) {
@@ -30,11 +44,15 @@ if ($resultSettings) {
   }
 }
 
+if($settings["password_set"]=='0'){
+  require 'first_time.php';
+  die;
+}
+
 $GLOBALS["settings"] = $settings;
+$rewards = get_rewards();
 
-$rewards = get_rewards($settings['rewards']);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST["new_password"])) {
 
   $view['main']['result_html']  = '';
   $view['main']['waiting_time'] = 0;

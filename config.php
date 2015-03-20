@@ -1,9 +1,10 @@
 <?php
 
-$mysqlHost     = 'HOST_NAME';
-$mysqlUsername = 'USERNAME';
-$mysqlPassword = 'PASSWORD';
-$mysqlDatabase = 'DATABASE';
+
+$mysqlHost     = 'localhost';
+$mysqlUsername = 'root';
+$mysqlPassword = 'root';
+$mysqlDatabase = 'rickybox';
 
 $dbdsn = "mysql:host=$mysqlHost;dbname=$mysqlDatabase";
 

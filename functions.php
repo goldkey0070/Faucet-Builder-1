@@ -47,7 +47,6 @@ function get_rewards($rewards = null)
 {
     if (is_null($rewards)) {
         $rewards = $GLOBALS['settings']['rewards'];
-        //$rewards = $settings['rewards'];
     }
     $rewards         = explode(',', $rewards);
     $rewardList      = array();

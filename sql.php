@@ -136,12 +136,17 @@ INSERT IGNORE INTO `settings` (`name`, `value`) VALUES
 ('timer', '1'),
 ('title', 'faucet title'),
 ('xapo_app_id', 'YOUR_APP_ID'),
-('xapo_secret_key', 'YOUR_SECRET_KEY');
+('xapo_secret_key', 'YOUR_SECRET_KEY'),
+('password', 'default'),
+('password_set', '0'),
+('bottom_horizontal_ad', '<div>bottom horizontal ad</div>'),
+('middle_horizontal_ad', '<div>middle horizontal ad</div>'),
+('right_vertical_ad', '<div>right vertical ad</div>'),
+('top_horizontal_ad', '<div>top horizontal ad</div>'),
+('left_vertical_ad', '<div>left vertical ad</div>')
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 QUERY;
 
+$change_password = "UPDATE settings set value=? where name='password';UPDATE settings set value=? where name='password_set';";
 
 ?>
