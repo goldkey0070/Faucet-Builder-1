@@ -53,3 +53,34 @@ z-index:-1;
 .initially-hidden{
   display:none;
 }
+
+
+.prev-box {
+    border-radius: 4px;
+}
+.prev-box > .btn {
+    min-width: 45px;
+    height: 33px;
+    font-weight: bold;
+}
+.prev-box > .text-white {
+    text-shadow: 0 0 2px black;
+}
+.prev-box > .active {
+    margin-top: -2px;
+    height: 36px;
+    font-weight: bold;
+    font-size: 130%;
+    border-radius: 3px !important;
+    box-shadow: 0px 1px 2px #333;
+}
+.prev-box > .transparent {
+    border: 1px dotted #FF0000;
+    box-shadow:  inset 0px 0px 5px #FFF;
+}
+.prev-box > .transparent.active {
+    box-shadow: 0px 1px 2px #333, inset 0px 0px 5px #FFF;
+}
+.picker-label {
+    padding-top: 11px;
+}

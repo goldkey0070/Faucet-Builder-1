@@ -35,7 +35,7 @@ $(document).ready(function(){
 <?php echo $view["admin_message_html"]; ?>
 
 <div id="change-pass" class="form-group border initially-hidden">
-    <form method="POST" data-toggle="validator">
+    <form method="POST">
     <label for="inputPassword" class="control-label">New Password</label>
     <div class="form-group">
       <input type="password" data-minlength="6" class="form-control" id="new_password" name="new_password"  placeholder="new password" required>
@@ -52,11 +52,11 @@ $(document).ready(function(){
 
 <div role="tabpanel">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+    <li><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
     <li><a href="#design" aria-controls="design" role="tab" data-toggle="tab">Design</a></li>
-    <li><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">Stats</a></li>
+    <li><a href="#password" aria-controls="password" role="tab" data-toggle="tab">Stats</a></li>
   </ul>
-  <form method="post" id="form" data-toggle="validator">
+  <form method="post">
   <div class="tab-content">
 
   <div role="tabpanel" class="tab-pane active" id="general">
@@ -65,8 +65,8 @@ $(document).ready(function(){
   <div role="tabpanel" class="tab-pane" id="design">
     <?php require 'template/design.php';?>
   </div>
-  <div role="tabpanel" class="tab-pane" id="stats">
-    <?php require 'template/stats.php'; ?>
+  <div role="tabpanel" class="tab-pane" id="password">
+    <?php require "template/stats.php"; ?>
   </div>
 </div>
 <button id="saveButton" type="submit" class="btn btn-default">Save Changes</button>

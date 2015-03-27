@@ -126,15 +126,20 @@ SET time_zone = "+00:00";
 
 INSERT IGNORE INTO `settings` (`name`, `value`) VALUES
 ('contact_mail', 'admin@domain.com'),
-('description_1', 'description 1'),
-('description_2', 'description 2'),
+('background_color', '#EAEAEA'),
+('background_image', ' '),
+('background_image_selected', 'false'),
+('button_type', 'success'),
+('main_content', 'Your main content here'),
 ('referral_percentage', '20'),
 ('rewards', '10*8, 20*4, 30*2, 40'),
 ('solvemedia_challenge_key', 'YOUR_SOLVEMEDIA_CHALLENGE_KEY'),
 ('solvemedia_verification_key', 'YOUR_SOLVEMEDIA_VERIFICATION_KEY'),
-('subtitle', 'faucet subtitle'),
+('subtitle', 'My new RickyBOX faucet :)'),
+('subtitle_color', '#6CB04C'),
 ('timer', '1'),
-('title', 'faucet title'),
+('title', 'RickyBox faucet'),
+('title_color', '#2F9102'),
 ('xapo_app_id', 'YOUR_APP_ID'),
 ('xapo_secret_key', 'YOUR_SECRET_KEY'),
 ('password', 'default'),
@@ -143,7 +148,9 @@ INSERT IGNORE INTO `settings` (`name`, `value`) VALUES
 ('middle_horizontal_ad', '<div>middle horizontal ad</div>'),
 ('right_vertical_ad', '<div>right vertical ad</div>'),
 ('top_horizontal_ad', '<div>top horizontal ad</div>'),
-('left_vertical_ad', '<div>left vertical ad</div>')
+('left_vertical_ad', '<div>left vertical ad</div>'),
+('submit_button_text','Claim prize!'),
+('button_background','success')
 
 QUERY;
 
