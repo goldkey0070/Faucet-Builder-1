@@ -2,9 +2,9 @@
 
 
 $mysqlHost     = 'localhost';
-$mysqlUsername = 'root';
-$mysqlPassword = 'root';
-$mysqlDatabase = 'rickybox';
+$mysqlUsername = '';
+$mysqlPassword = '';
+$mysqlDatabase = '';
 
 $dbdsn = "mysql:host=$mysqlHost;dbname=$mysqlDatabase";
 

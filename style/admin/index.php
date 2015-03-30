@@ -56,8 +56,6 @@ if(isset($_POST["title"])){
     $settings = $_POST;
     $insertQuery =  update_settings_query($settings);
     $resultSettings = $sql->query($insertQuery);
-    $resultSettings->closeCursor();
-    $view["admin_message_html"]='<div class="alert alert-success" role="alert">Changes made successfully.</div>';
   }
 }
 else{
