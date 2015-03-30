@@ -32,10 +32,7 @@ if(isset($_POST["password"])){
     }
   }
   else{
-    $view["admin_message_html"]='<div class="alert alert-danger" role="alert">
-    <span class="sr-only">Error:</span>
-    Enter a valid email address
-    </div>';
+    $view["admin_message_html"]='<div class="alert alert-danger" role="alert"> Incorrect Password </div>';
   }
 }
 
@@ -56,8 +53,7 @@ if(isset($_POST["title"])){
     $settings = $_POST;
     $insertQuery =  update_settings_query($settings);
     $resultSettings = $sql->query($insertQuery);
-    $resultSettings->closeCursor();
-    $view["admin_message_html"]='<div class="alert alert-success" role="alert">Changes made successfully.</div>';
+	$view["admin_message_html"]='<div class="alert alert-success" role="alert">Changes made succesfully</div>';
   }
 }
 else{
@@ -65,6 +61,7 @@ else{
     if($_SESSION['admin']){
       if($_POST["new_password"]==$_POST["password_confirmation"]){
         $updatePassword =  update_password_query();
+
         $q = $sql->prepare($updatePassword);
         $q->execute(array($_POST["new_password"]));
         unset($_COOKIE['admin']);
@@ -83,9 +80,9 @@ else{
             $settings[$row['name']] = $row['value'];
           }
         }
-
       }
     }
+
   }
   else{
     $queryGeneralSettings = "select * from settings";

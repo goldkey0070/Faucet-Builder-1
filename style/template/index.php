@@ -5,26 +5,11 @@
   <link rel="stylesheet" href="style/css/bootstrap.min.css" media="screen">
   <link rel="stylesheet" href="style/css/bootstrap.css" media="screen">
   <link rel="stylesheet" href="style/css/myCssClass.css" media="screen">
-  <style>
-  .color-title{
-    color:<?php echo $settings["title_color"];?>;
-  }
-  .color-subtitle{
-    color:<?php echo $settings["subtitle_color"];?>;
-  }
-  .color-background-body{
-    <?php if($settings["background_image_selected"]=="true") {?>
-      background-image: url(<?php echo $settings["background_image"];?>);
-      <?php } else{ ?>
-    background-color:<?php echo $settings["background_color"];
-    }?>;
-  }
-  </style>
 </head>
-<body class="color-background-body">
+<body>
   <div class ="container-fluid">
-    <h1 class="text-center color-title"><?php echo $settings["title"];?></h1>
-    <h3 class="text-center color-subtitle"><?php echo $settings["subtitle"];?></h3>
+    <h1 class="text-center"><?php echo $settings["title"];?></h1>
+    <h3 class="text-center"><?php echo $settings["subtitle"];?></h3>
     <div class="row">
       <div class="col-sm-3 col-md-2 hidden-xs">
         <!-- Insert your left vertical google ad Code below this comment-->
@@ -35,11 +20,11 @@
         <!-- Insert your top horizontal google ad Code below this comment (Recommended size 728x90)-->
         <?php echo $settings["top_horizontal_ad"];?>
     </div>
-
-
-      <div><strong><p class="alert alert-info">Your possible rewards <?php echo $rewards["reward_list_html"]; ?></p></strong></div>
+      <h3><?php echo $settings["description_1"];?></h3>
+      <h3><?php echo $settings["description_2"];?></h3>
+      <div><p>Your possible rewards <?php echo $rewards["reward_list_html"]; ?></p></div>
       <div>
-        <strong><p>Earning bitcoins is simple:</p></strong>
+        <p>Earning bitcoins is simple:</p>
       </div>
       <?php echo $view['main']['result_html']; ?>
       <?php echo $view['main']['ref_link']; ?>
@@ -57,7 +42,7 @@
               </div>
             <div>
               <div>
-                <button class="btn btn-<?php echo $settings["button_background"]; ?>" type="submit"><?php echo $settings["submit_button_text"]; ?></button>
+                <button class="btn btn-default" type="submit">Give me my reward !</button>
               </div>
             </div>
           </form>
@@ -65,7 +50,7 @@
           <!-- Insert your rectangle google ad Code below this comment (Recommended size 300x250)-->
           <?php echo $settings["bottom_horizontal_ad"];?>
           <div id="description">
-            <strong><p><?php echo $settings["main_content"];?></p></strong>
+            <strong><p>Insert your text here</p></strong>
           </div>
       </div>
       <div class="col-sm-3 col-md-2 hidden-xs zeta">
