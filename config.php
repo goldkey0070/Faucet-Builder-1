@@ -8,4 +8,5 @@ $mysqlDatabase = '';
 
 $dbdsn = "mysql:host=$mysqlHost;dbname=$mysqlDatabase";
 
+
 ?>
