@@ -20,8 +20,10 @@ if(isset($_POST["action"])){
 
 if(isset($_POST["password"])){
   $pass = $_POST["password"];
-  $query = "select * from settings where name='password' and value='$pass'";
-  $res = $sql->query($query)->fetch();
+  $query = "select * from settings where name='password' and value=?";
+  $q = $sql->prepare($query);
+  $q->execute(array($pass));
+  $res = $q->fetch();
   if($res){
     $_SESSION['admin']=true;
     if(isset($_POST["remember"])&&$_POST["remember"]=="on"){
@@ -35,6 +37,7 @@ if(isset($_POST["password"])){
     $view["admin_message_html"]='<div class="alert alert-danger" role="alert">
   Incorrect password.
     </div>';
+    $_SESSION['admin']=false;
   }
 }
 
@@ -74,7 +77,7 @@ else{
       }
       else{
         $view["admin_message_html"]='<div class="alert alert-danger" role="alert">Password does not match confirmation.</div>';
-        $queryGeneralSettings = "select * from settings";
+        $queryGeneralSettings = "select * from settings where name<>'password'";
         $resultSettings = $sql->query($queryGeneralSettings);
 
         if ($resultSettings) {
@@ -87,7 +90,7 @@ else{
     }
   }
   else{
-    $queryGeneralSettings = "select * from settings";
+    $queryGeneralSettings = "select * from settings where name<>'password'";
     $resultSettings = $sql->query($queryGeneralSettings);
 
     if ($resultSettings) {

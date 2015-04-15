@@ -4,7 +4,9 @@ function update_settings_query($settings){
   $sql = "";
   try{
     foreach ($settings as $key => $value) {
+      if($key!="password"){
         $sql .= "update settings set value='$value' where name='$key';";
+        }
       }
       return $sql;
     }
@@ -19,11 +21,11 @@ function update_password_query(){
 }
 
 function query_last_week(){
-  return "select COALESCE(sum(amount),0) as value from data where date > DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+  return "select COALESCE(sum(amount),0) as value from data where date > DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND result=1";
 }
 
 function query_last_week_referals(){
-  return "select COALESCE(sum(amount),0) as value from data_referals where date > DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+  return "select COALESCE(sum(amount),0) as value from data_referals where date > DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND result=1";
 }
 
 function query_since_beginning(){

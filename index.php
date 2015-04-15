@@ -24,13 +24,6 @@ catch(Exception $ex){
 
   echo $ex->getMessage();
 }
-if(isset($_POST["new_password"])){
-  if($_POST["new_password"]==$_POST["password_confirmation"]){
-    $q = $sql->prepare($change_password);
-    $q->execute(array($_POST["new_password"],"1"));
-    $q->closeCursor();
-  }
-}
 
 //general settings
 $queryGeneralSettings = "select * from settings";
@@ -44,10 +37,25 @@ if ($resultSettings) {
   }
 }
 
+
+
+if($settings["password_set"]=='0'){
+if(isset($_POST["new_password"])){
+  if($_POST["new_password"]==$_POST["password_confirmation"]){
+    $q = $sql->prepare($change_password);
+    $q->execute(array($_POST["new_password"],"1"));
+    $q->closeCursor();
+    $settings["password_set"]='1';
+  }
+}
+}
+
 if($settings["password_set"]=='0'){
   require 'first_time.php';
   die;
 }
+
+
 
 $GLOBALS["settings"] = $settings;
 $rewards = get_rewards();
@@ -91,15 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST["new_password"])) {
   $q = $sql->prepare("select * from users where LOWER(username) = LOWER(?) or ip = ? order by claimed_at desc");
   $q->execute(array($username,$ip));
   $row = $q->fetch();
-
   //timer check
-  if ($row === null || $row['claimed_at'] <= $time - ($settings['timer'] * 60)) {
 
+  if ($row === null || $row['claimed_at'] <= $time - ($settings['timer'] * 60)) {
     $amount = intval($rewards['random_reward']);
 
 
     $response = pay($username,$amount,"Earnings from XXX, payed through Xapo!");
-
     try{
       $message=$response->message;
 
@@ -109,8 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST["new_password"])) {
       else{
         $success = 1;
       }
-      $q = $sql->prepare("INSERT into data (user, amount, date, result, message) values ('$username', $amount, CURRENT_TIMESTAMP, $success, '$message')");
-      $q->execute();
+      $q = $sql->prepare("INSERT into data (user, amount, date, result, message) values (?, ?, CURRENT_TIMESTAMP, ?, ?)");
+      $q->execute(array($username,$amount,$success,$message));
     }
     catch(Exception $e){
       goto error;

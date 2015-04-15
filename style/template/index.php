@@ -47,8 +47,8 @@
       <?php echo $settings["middle_horizontal_ad"]; ?>
       <form method="Post">
         <div >
-          <div><label>Insert your email address:</label>
-            <input name="username" id="username" class="form-control text-center" type="text" placeholder="Enter your email address"></div>
+          <div><label>Insert your email or BTC address:</label>
+            <input name="username" id="username" class="form-control text-center" type="text" placeholder="Enter your email or BTC address"></div>
           </div><br>
           <div>
             <div class="form-group"><label>Solve the captcha:</label>
