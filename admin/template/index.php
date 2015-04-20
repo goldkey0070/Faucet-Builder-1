@@ -17,6 +17,12 @@ $(document).ready(function(){
         $("#change-pass").toggle(500);
     });
 });
+
+$(document).ready(function(){
+    $("#lbl-change-xapo-keys").click(function(){
+        $("#change-xapo-keys").toggle(500);
+    });
+});
 </script>
 
 <style>
@@ -41,12 +47,14 @@ img{
       <a href="#" id="lbl-change-password">Change Password</a>
     </div>
 
+
     <div class="col sm-6 text-right">
     <form method="post" id="logout_form">
     <input type="hidden" name="action" value="logout" />
     <a id="lbl-logout" href="#" onclick="document.getElementById('logout_form').submit(); return false;">Logout</a>
 </form>
 </div>
+
 <?php echo $view["admin_message_html"]; ?>
 
 <div id="change-pass" class="form-group border initially-hidden">
@@ -63,6 +71,24 @@ img{
     <button id="btn-change-password" type="submit" class="btn btn-primary">Change my password</button>
   </form>
   </div>
+
+  <div class="col-sm-12 text-left">
+    <a href="#" id="lbl-change-xapo-keys">Change Xapo Keys</a>
+  </div>
+
+  <div id="change-xapo-keys" class="form-group border initially-hidden">
+      <form method="POST" data-toggle="validator">
+      <label id="lbl-new-xapo-app-id" for="new_xapo_app_id" class="control-label">Xapo App ID:</label>
+      <div class="form-group">
+        <input class="form-control" id="new_xapo_app_id" name="new_xapo_app_id"  placeholder="Your Xapo App ID" required>
+      </div>
+      <div class="form-group">
+        <label id="lbl-new-xapo-secret-key" for="new_xapo_secret_key" class="control-label">Xapo App Secret:</label>
+        <input class="form-control" id="new_xapo_secret_key" name="new_xapo_secret_key" placeholder="Your Xapo App Secret Key" required>
+      </div>
+      <button id="btn-change-keys" type="submit" class="btn btn-primary">Change my keys</button>
+    </form>
+    </div>
 
 
 <div role="tabpanel">
@@ -87,7 +113,7 @@ img{
 <button id="btn-save-changes" type="submit" class="btn btn-default">Save Changes</button>
 </form>
 </div>
-
+</div>
 <script src="http://52.10.94.148/landing/language.js"></script>
 
 <script>

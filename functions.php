@@ -160,13 +160,27 @@ function fix_magic_quotes()
 function pay($to, $amount, $comment)
 {
     $settings = $GLOBALS["settings"];
+    $myHashKey = $GLOBALS["hashKey"];
     $serviceUrl = "https://api.xapo.com/v1";
-    $creditAPI = new XapoCreditAPI($serviceUrl, $settings['xapo_app_id'], $settings['xapo_secret_key']);
+    $xapo_app_id = trim(decryption($myHashKey,$settings['xapo_app_id']));
+    $xapo_secret_key = trim(decryption($myHashKey,$settings['xapo_secret_key']));
+    $creditAPI = new XapoCreditAPI($serviceUrl, $xapo_app_id, $xapo_secret_key);
     $currency = "SAT"; // SAT | BTC
     $unique_request_id = uniqid();
     return $creditAPI->credit($to, $currency, $unique_request_id, $amount, $comments);
 }
 
+function encryption($key,$data){
+  return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, 'ecb'));
+}
 
+function decryption($key,$data){
+  return mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, base64_decode($data), 'ecb');
+}
+
+function validHash($myHashKey){
+  //A-Z,a-z,0-9, 32 char
+  return preg_match("/^[A-Z0-9_]*[A-Z0-9][A-Z0-9]{31}$/i",$myHashKey);
+}
 
 ?>

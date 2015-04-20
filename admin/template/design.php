@@ -71,11 +71,11 @@ colorCheck();
       </tr>
       <tr>
         <td id="lbl-title-color">Title</td>
-        <td><input type="color" name="title_background" value=<?php echo $settings["title_color"]?>></td>
+        <td><input type="color" name="title_color" value=<?php echo $settings["title_color"]?>></td>
       </tr>
       <tr>
         <td id="lbl-subtitle-color">Subtitle</td>
-        <td><input type="color" name="subtitle_background" value=<?php echo $settings["subtitle_color"]?>></td>
+        <td><input type="color" name="subtitle_color" value=<?php echo $settings["subtitle_color"]?>></td>
       </tr>
       <tr>
         <td id="btn-save-changes-color">Submit button</td>
@@ -123,4 +123,3 @@ colorCheck();
 <textarea class="form-control" rows="3" id="bottom_horizontal_ad" name="bottom_horizontal_ad"><?php echo $settings["bottom_horizontal_ad"];?></textarea>
 <span id="lbl-bottom-horizontal-recomended" class="help-block with-errors">Recommended size 300x250</span>
 </div>
-

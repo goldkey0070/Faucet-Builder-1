@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
       <label id="lbl-main-content" for="main-content">Faucet Main Content:</label>
-      <textarea class="form-control" rows="3" id="main_content" name="main-content"><?php echo $settings["main_content"]?></textarea>
+      <textarea class="form-control" rows="3" id="main_content" name="main_content"><?php echo $settings["main_content"]?></textarea>
     </div>
     <div class="form-group">
       <label id="lbl-rewards" for="rewards">Rewards:</label>
@@ -36,11 +36,11 @@
       <input type="text" value="<?php echo $settings["solvemedia_verification_key"]?>" class="form-control" id="solvemedia-verification-key" name="solvemedia_verification_key">
     </div>
     <div class="form-group">
-      <label id="lbl-xapo-app" for="xapo_app">Xapo App:</label>
-      <input type="text" value="<?php echo $settings["xapo_app_id"]?>" class="form-control" id="xapo_app_id" name="xapo_app_id">
+      <label id="lbl-xapo-app" for="xapo_app">Last 4 Xapo App characters:</label>
+      <input type="text" value="<?php echo $settings["xapo_app_id"]?>" class="form-control" id="xapo_app_id" name="xapo_app_id" disabled>
     </div>
     <div class="form-group">
-      <label id="lbl-secret-key" for="secret_key">Xapo Secret Key:</label>
-      <input type="text" value="<?php echo $settings["xapo_secret_key"]?>" class="form-control" id="xapo_secret_key" name="xapo_secret_key" >
+      <label id="lbl-secret-key" for="secret_key">Last 4 Xapo Secret Key characters:</label>
+      <input type="text" value="<?php echo $settings["xapo_secret_key"]?>" class="form-control" id="xapo_secret_key" name="xapo_secret_key" disabled>
     </div>
   </div>

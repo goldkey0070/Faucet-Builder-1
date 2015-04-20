@@ -3,12 +3,16 @@ require 'config.php';
 require 'functions.php';
 require 'sql.php';
 
+if(!validHash($myHashKey)){
+  die("Invalid Hash key. Open your config.php file and enter a 32 digit key made with numbers or letters from A to F.<br>Suggestion: use some random text generator to make it safer.");
+}
+
+
 error_reporting(0);
 fix_magic_quotes();
 
 $settings      = array();
 $time          = time();
-
 try {
     $sql = new PDO($dbdsn, $mysqlUsername, $mysqlPassword, array(PDO::ATTR_PERSISTENT => true,
                                                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -17,7 +21,6 @@ try {
 }
 try{
 $sql->query($create_tables);
-
 $sql->query($insert_settings);
 }
 catch(Exception $ex){
@@ -27,8 +30,6 @@ catch(Exception $ex){
 
 //general settings
 $queryGeneralSettings = "select * from settings";
-$resultSettings = $sql->query($queryGeneralSettings);
-
 $resultSettings = $sql->query($queryGeneralSettings);
 
 if ($resultSettings) {
@@ -43,7 +44,8 @@ if($settings["password_set"]=='0'){
 if(isset($_POST["new_password"])){
   if($_POST["new_password"]==$_POST["password_confirmation"]){
     $q = $sql->prepare($change_password);
-    $q->execute(array($_POST["new_password"],"1"));
+    $encrypted_pass = encryption($myHashKey,$_POST["new_password"]);
+    $q->execute(array($encrypted_pass,"1"));
     $q->closeCursor();
     $settings["password_set"]='1';
   }
@@ -58,6 +60,8 @@ if($settings["password_set"]=='0'){
 
 
 $GLOBALS["settings"] = $settings;
+$GLOBALS["hashKey"] = $myHashKey;
+
 $rewards = get_rewards();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST["new_password"])) {
