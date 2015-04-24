@@ -2,10 +2,10 @@
 
 
 $mysqlHost     = 'localhost';
-$mysqlUsername = 'root';
-$mysqlPassword = 'Tole7Gol';
-$mysqlDatabase = 'builder';
+$mysqlUsername = '';
+$mysqlPassword = '';
+$mysqlDatabase = '';
 
 $dbdsn = "mysql:host=$mysqlHost;dbname=$mysqlDatabase";
 
-$myHashKey = "KZhK1BlhnYLCHp9vDbJqY55VtWvSWYW5";
+$myHashKey = "Your_Hash_Key";
